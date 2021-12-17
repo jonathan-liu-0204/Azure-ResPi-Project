@@ -27,4 +27,4 @@ print("file uploaded")
 #  join the absolute path and created file name
 abs_file_path = os.path.join(script_dir, rel_path)
 
-print abs_file_path
+print(abs_file_path)
