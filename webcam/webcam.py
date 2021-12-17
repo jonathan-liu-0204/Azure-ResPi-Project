@@ -21,7 +21,7 @@ block_blob_service.create_blob_from_path(
     'webcamimageupload',
     'firstblood.jpg',
     rel_path,
-    content_settings=ContentSettings(content_type='image/jpeg'))
+    content_settings=ContentSettings(content_type='image/jpg'))
 print("file uploaded")
 
 # #  join the absolute path and created file name
