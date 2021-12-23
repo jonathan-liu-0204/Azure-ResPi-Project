@@ -4,8 +4,7 @@ import sys
 import time
 import subprocess
 
-from azure.storage.blob import BlockBlobService
-from azure.storage.blob import ContentSettings
+from azure.storage.blob import BloBcLIENT
 
 # read the absolute path
 script_dir = os.path.dirname(__file__)
