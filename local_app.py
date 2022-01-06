@@ -39,6 +39,8 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 CURR_DIR = os.path.dirname(os.path.realpath(__file__))
 
+print(CURR_DIR)
+
 #print(os.path.join(CURR_DIR, "./captured", rel_path))
 
 with open("/captured/" + rel_path, "rb") as image_contents:
