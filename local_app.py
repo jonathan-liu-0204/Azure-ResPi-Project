@@ -23,28 +23,18 @@ prediction_resource_id = "PASTE_YOUR_CUSTOM_VISION_PREDICTION_RESOURCE_ID_HERE"
 # read the absolute path
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
-print("script_dir:   " + script_dir)
-
-# call the .sh to capture the image
 DATE = datetime.now().strftime("%Y-%m-%d_%H%M")
 os.system('fswebcam -r 1280x720 --no-banner ./captured/' + DATE + '.jpg')
 
 # create the real path
-rel_path = DATE +".jpg"
+rel_path = "/captured/" + DATE + ".jpg"
 
 #  join the absolute path and created file name
 abs_file_path = os.path.join(script_dir, rel_path)
 print("absolute:    " + abs_file_path)
 
-prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
-predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
-
-CURR_DIR = os.path.dirname(os.path.realpath(__file__))
-
-print(CURR_DIR)
-
-#print(os.path.join(CURR_DIR, "./captured", rel_path))
+# prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
+# predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 with open(abs_file_path, "rb") as image_contents:
-
      print(image_contents)
