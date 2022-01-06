@@ -4,6 +4,8 @@ import sys
 import time
 import subprocess
 
+from numpy import asarray
+
 #------------azure custom vision--------------
 
 from azure.cognitiveservices.vision.customvision.training import CustomVisionTrainingClient
@@ -18,6 +20,7 @@ training_key = "PASTE_YOUR_CUSTOM_VISION_TRAINING_SUBSCRIPTION_KEY_HERE"
 prediction_key = "PASTE_YOUR_CUSTOM_VISION_PREDICTION_SUBSCRIPTION_KEY_HERE"
 prediction_resource_id = "PASTE_YOUR_CUSTOM_VISION_PREDICTION_RESOURCE_ID_HERE"
 
+publish_iteration_name = "classifyModel"
 #---------------------------------------------
 
 # read the absolute path
@@ -33,8 +36,18 @@ rel_path = DATE + ".jpg"
 abs_file_path = os.path.join(script_dir + "/captured", rel_path)
 print("absolute:    " + abs_file_path)
 
-# prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
-# predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
+prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
+predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 with open(abs_file_path, "rb") as image_contents:
-     print(image_contents)
+
+    data = asarray(image_contents)
+    print(data)
+    
+    # byteData = GetImageAsByteArray(image_contents)
+
+    # results = predictor.classify_image(project.id, publish_iteration_name, image_contents.read())
+
+    # # Display the results.
+    # for prediction in results.predictions:
+    #     print("\t" + prediction.tag_name +": {0:.2f}%".format(prediction.probability * 100))
