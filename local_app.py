@@ -39,9 +39,11 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 path = "./"
 
-with open(os.path.join(path, "/captured", rel_path), "rb") as image_contents:
+print(os.path.join(path, "/captured", rel_path), "rb")
 
-    print(image_contents)
+#with open(os.path.join(path, "/captured", rel_path), "rb") as image_contents:
+
+    # print(image_contents)
     # results = predictor.classify_image(
     #     project.id, publish_iteration_name, image_contents.read())
 
