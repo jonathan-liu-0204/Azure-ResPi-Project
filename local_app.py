@@ -21,7 +21,7 @@ prediction_resource_id = "PASTE_YOUR_CUSTOM_VISION_PREDICTION_RESOURCE_ID_HERE"
 #---------------------------------------------
 
 # read the absolute path
-script_dir = os.path.dirname(__file__)
+script_dir = os.path.dirname(os.path.realpath(__file__))
 
 print("script_dir:   " + script_dir)
 
