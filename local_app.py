@@ -5,6 +5,7 @@ import time
 import subprocess
 
 from numpy import asarray
+from PIL import Image
 
 #------------azure custom vision--------------
 
@@ -34,15 +35,13 @@ rel_path = DATE + ".jpg"
 
 #  join the absolute path and created file name
 abs_file_path = os.path.join(script_dir + "/captured", rel_path)
-print("absolute:    " + abs_file_path)
 
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
-with open(abs_file_path, "rb") as image_contents:
-
-    data = asarray(image_contents)
-    print(data)
+image = Image.open(abs_file_path)
+byte_image = asarray(image)
+print(byte_image)
     
     # byteData = GetImageAsByteArray(image_contents)
 
