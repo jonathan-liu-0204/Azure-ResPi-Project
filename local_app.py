@@ -9,7 +9,7 @@ script_dir = os.path.dirname(__file__)
 
 # call the .sh to capture the image
 DATE = datetime.now().strftime("%Y-%m-%d_%H%M")
-os.system('fswebcam -r 1280x720 --no-banner ./$' + DATE + '.jpg')
+os.system('fswebcam -r 1280x720 --no-banner ./captured/$' + DATE + '.jpg')
 
 # create the real path
 rel_path = DATE +".jpg"
