@@ -37,9 +37,9 @@ print(abs_file_path)
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
-path = "./"
+path = ""
 
-print(os.path.join(path, "/captured", rel_path))
+print(os.path.join(path, "./captured", rel_path))
 
 #with open(os.path.join(path, "/captured", rel_path), "rb") as image_contents:
 
