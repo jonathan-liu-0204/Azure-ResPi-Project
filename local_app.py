@@ -39,7 +39,7 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 path = "./"
 
-print(os.path.join(path, "/captured", rel_path), "rb")
+print(os.path.join(path, "/captured", rel_path))
 
 #with open(os.path.join(path, "/captured", rel_path), "rb") as image_contents:
 
