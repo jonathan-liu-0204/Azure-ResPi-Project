@@ -30,7 +30,7 @@ os.system('fswebcam -r 1280x720 --no-banner ./captured/' + DATE + '.jpg')
 rel_path = DATE + ".jpg"
 
 #  join the absolute path and created file name
-abs_file_path = os.path.join(script_dir, "/captured", rel_path)
+abs_file_path = os.path.join(script_dir + "/captured", rel_path)
 print("absolute:    " + abs_file_path)
 
 # prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
