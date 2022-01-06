@@ -23,7 +23,7 @@ prediction_resource_id = "PASTE_YOUR_CUSTOM_VISION_PREDICTION_RESOURCE_ID_HERE"
 # read the absolute path
 script_dir = os.path.dirname(__file__)
 
-print(script_dir)
+print("script_dir:   " + script_dir)
 
 # call the .sh to capture the image
 DATE = datetime.now().strftime("%Y-%m-%d_%H%M")
