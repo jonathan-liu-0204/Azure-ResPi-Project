@@ -19,8 +19,8 @@ import os, time, uuid
 ENDPOINT = "https://driverstatusdetection-prediction.cognitiveservices.azure.com/"
 prediction_resource_id = "/subscriptions/979b4825-25a2-4a44-b45b-9ec15fb3d60c/resourceGroups/GPS-Intern-Jonathan-RaspixAzure-Project/providers/Microsoft.CognitiveServices/accounts/DriverStatusDetection-Prediction"
 iteration_name = "Iteration1"
-prediction_key = "67e043e7eb05473698e2c8b8cd390cfb"
-project_id = "5dc3b0ae-b36d-4cc5-ac3c-b3e45b9f4dbe"
+prediction_key = ""
+project_id = ""
 
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
@@ -28,12 +28,12 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 #---------------------------------------------
 #----------------azure blob storage-------------
 
-from azure.storage.blob import BlobClient
+#from azure.storage.blob import BlobClient
 
 # Retrieve the connection string from an environment variable. Note that a connection
 # string grants all permissions to the caller, making it less secure than obtaining a
 # BlobClient object using credentials.
-conn_string = os.environ["DefaultEndpointsProtocol=https;AccountName=raspiazureproject;AccountKey=DPiBhdEhyfBdyEG32tt4PpL+r4N3oa3ZOIIYBwiXwnCh6NuLfeGTozrJ64BY0/1z0M09Mc7xnoEjFIZ8GGfF9A==;EndpointSuffix=core.windows.net"]
+#conn_string = os.environ["DefaultEndpointsProtocol=https;AccountName=raspiazureproject;AccountKey=DPiBhdEhyfBdyEG32tt4PpL+r4N3oa3ZOIIYBwiXwnCh6NuLfeGTozrJ64BY0/1z0M09Mc7xnoEjFIZ8GGfF9A==;EndpointSuffix=core.windows.net"]
 
 #---------------------------------------------
 
@@ -46,8 +46,7 @@ os.system('fswebcam -r 1280x720 --no-banner ./captured/' + DATE + '.jpg')
 
 # Create the client object for the resource identified by the connection string,
 # indicating also the blob container and the name of the specific blob we want.
-blob_client = BlobClient.from_connection_string(conn_string,
-    container_name="capturedimages", blob_name=DATE)
+#blob_client = BlobClient.from_connection_string(conn_string,container_name="capturedimages", blob_name=DATE)
 
 # create the real path
 rel_path = DATE + ".jpg"
