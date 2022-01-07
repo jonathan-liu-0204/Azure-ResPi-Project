@@ -19,9 +19,8 @@ import os, time, uuid
 ENDPOINT = "https://driverstatusdetection-prediction.cognitiveservices.azure.com/"
 prediction_resource_id = "/subscriptions/979b4825-25a2-4a44-b45b-9ec15fb3d60c/resourceGroups/GPS-Intern-Jonathan-RaspixAzure-Project/providers/Microsoft.CognitiveServices/accounts/DriverStatusDetection-Prediction"
 iteration_name = "Iteration1"
-prediction_key = ""
-project_id = ""
-
+prediction_key = "67e043e7eb05473698e2c8b8cd390cfb"
+project_id = "5dc3b0ae-b36d-4cc5-ac3c-b3e45b9f4dbe"
 
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
