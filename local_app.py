@@ -17,18 +17,14 @@ import os, time, uuid
 
 # Replace with valid values
 ENDPOINT = "https://driverstatusdetection.cognitiveservices.azure.com/"
-training_key = ""
 prediction_key = ""
 prediction_resource_id = "/subscriptions/979b4825-25a2-4a44-b45b-9ec15fb3d60c/resourceGroups/GPS-Intern-Jonathan-RaspixAzure-Project/providers/Microsoft.CognitiveServices/accounts/DriverStatusDetection-Prediction"
 iteration_id = ""
+iteration_name = "Iteration 1"
 
-
-credentials = ApiKeyCredentials(in_headers={"Training-key": training_key})
-trainer = CustomVisionTrainingClient(ENDPOINT, credentials)
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
-publish_iteration_name = "classifyModel"
 #---------------------------------------------
 
 # read the absolute path
@@ -53,7 +49,7 @@ prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": predict
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 with open(abs_file_path, "rb") as image_contents:
-    results = predictor.classify_image(iteration_id, publish_iteration_name, image_contents.read())
+    results = predictor.classify_image(iteration_id, iteration_name, image_contents.read())
 
     # Display the results.
     for prediction in results.predictions:
