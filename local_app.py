@@ -22,6 +22,7 @@ iteration_name = "Iteration1"
 prediction_key = ""
 project_id = ""
 
+
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
@@ -31,7 +32,7 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 # IMPORTANT: Replace connection string with your storage account connection string
 # Usually starts with DefaultEndpointsProtocol=https;...
-CONNECTION_STRING = "REPLACE_THIS"
+#CONNECTION_STRING = "REPLACE_THIS"
  
 #blob_client = BlobClient(conn_string=CONNECTION_STRING,container_name="capturedimages",blob_name="testing.txt")
 
@@ -49,8 +50,6 @@ rel_path = DATE + ".jpg"
 
 #  join the absolute path and created file name
 abs_file_path = os.path.join(script_dir + "/captured", rel_path)
-
-LOCAL_IMAGE_PATH = abs_file_path
 
 with open(abs_file_path, "rb") as image_contents:
     results = predictor.classify_image(project_id, iteration_name, image_contents)
