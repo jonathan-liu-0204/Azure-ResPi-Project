@@ -16,10 +16,16 @@ from msrest.authentication import ApiKeyCredentials
 import os, time, uuid
 
 # Replace with valid values
-ENDPOINT = "PASTE_YOUR_CUSTOM_VISION_TRAINING_ENDPOINT_HERE"
+ENDPOINT = "https://driverstatusdetection.cognitiveservices.azure.com/"
 training_key = "PASTE_YOUR_CUSTOM_VISION_TRAINING_SUBSCRIPTION_KEY_HERE"
 prediction_key = "PASTE_YOUR_CUSTOM_VISION_PREDICTION_SUBSCRIPTION_KEY_HERE"
-prediction_resource_id = "PASTE_YOUR_CUSTOM_VISION_PREDICTION_RESOURCE_ID_HERE"
+prediction_resource_id = "/subscriptions/979b4825-25a2-4a44-b45b-9ec15fb3d60c/resourceGroups/GPS-Intern-Jonathan-RaspixAzure-Project/providers/Microsoft.CognitiveServices/accounts/DriverStatusDetection-Prediction"
+iteration_id = ""
+
+credentials = ApiKeyCredentials(in_headers={"Training-key": training_key})
+trainer = CustomVisionTrainingClient(ENDPOINT, credentials)
+prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
+predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 publish_iteration_name = "classifyModel"
 #---------------------------------------------
@@ -40,9 +46,19 @@ prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": predict
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 image = Image.open(abs_file_path)
-byte_image = asarray(image)
-print(byte_image)
-    
+
+# Now there is a trained endpoint that can be used to make a prediction
+prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
+predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
+
+with image as image_contents:
+    results = predictor.classify_image(iteration_id, publish_iteration_name, image_contents.read())
+
+    # Display the results.
+    for prediction in results.predictions:
+        print("\t" + prediction.tag_name +": {0:.2f}%".format(prediction.probability * 100))
+
+
     # byteData = GetImageAsByteArray(image_contents)
 
     # results = predictor.classify_image(project.id, publish_iteration_name, image_contents.read())
