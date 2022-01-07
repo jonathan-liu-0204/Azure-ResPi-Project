@@ -16,11 +16,11 @@ from msrest.authentication import ApiKeyCredentials
 import os, time, uuid
 
 # Replace with valid values
-ENDPOINT = "https://driverstatusdetection.cognitiveservices.azure.com/"
-prediction_key = ""
+ENDPOINT = "https://driverstatusdetection-prediction.cognitiveservices.azure.com/"
 prediction_resource_id = "/subscriptions/979b4825-25a2-4a44-b45b-9ec15fb3d60c/resourceGroups/GPS-Intern-Jonathan-RaspixAzure-Project/providers/Microsoft.CognitiveServices/accounts/DriverStatusDetection-Prediction"
-iteration_id = ""
-iteration_name = "Iteration 1"
+iteration_name = "Iteration1"
+prediction_key = ""
+project_id = ""
 
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
@@ -39,17 +39,8 @@ rel_path = DATE + ".jpg"
 #  join the absolute path and created file name
 abs_file_path = os.path.join(script_dir + "/captured", rel_path)
 
-prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
-predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
-
-#image = Image.open(abs_file_path)
-
-# Now there is a trained endpoint that can be used to make a prediction
-prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
-predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
-
 with open(abs_file_path, "rb") as image_contents:
-    results = predictor.classify_image(iteration_id, iteration_name, image_contents.read())
+    results = predictor.classify_image(project_id, iteration_name, image_contents)
 
     # Display the results.
     for prediction in results.predictions:
