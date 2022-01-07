@@ -45,24 +45,15 @@ abs_file_path = os.path.join(script_dir + "/captured", rel_path)
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
-image = Image.open(abs_file_path)
+#image = Image.open(abs_file_path)
 
 # Now there is a trained endpoint that can be used to make a prediction
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
-with image as image_contents:
+with Image.open(abs_file_path, "rb") as image_contents:
     results = predictor.classify_image(iteration_id, publish_iteration_name, image_contents.read())
 
     # Display the results.
     for prediction in results.predictions:
         print("\t" + prediction.tag_name +": {0:.2f}%".format(prediction.probability * 100))
-
-
-    # byteData = GetImageAsByteArray(image_contents)
-
-    # results = predictor.classify_image(project.id, publish_iteration_name, image_contents.read())
-
-    # # Display the results.
-    # for prediction in results.predictions:
-    #     print("\t" + prediction.tag_name +": {0:.2f}%".format(prediction.probability * 100))
