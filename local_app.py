@@ -17,11 +17,10 @@ import os, time, uuid
 
 # Replace with valid values
 ENDPOINT = "https://driverstatusdetection.cognitiveservices.azure.com/"
-training_key = "4b345d978c424700864ab175d9c1cbe1"
-prediction_key = "67e043e7eb05473698e2c8b8cd390cfb"
+training_key = "PASTE_YOUR_CUSTOM_VISION_TRAINING_SUBSCRIPTION_KEY_HERE"
+prediction_key = "PASTE_YOUR_CUSTOM_VISION_PREDICTION_SUBSCRIPTION_KEY_HERE"
 prediction_resource_id = "/subscriptions/979b4825-25a2-4a44-b45b-9ec15fb3d60c/resourceGroups/GPS-Intern-Jonathan-RaspixAzure-Project/providers/Microsoft.CognitiveServices/accounts/DriverStatusDetection-Prediction"
-iteration_id = "6af8ff86-a8dd-49b5-ab3f-53b0398cc2d5"
-
+iteration_id = ""
 
 credentials = ApiKeyCredentials(in_headers={"Training-key": training_key})
 trainer = CustomVisionTrainingClient(ENDPOINT, credentials)
