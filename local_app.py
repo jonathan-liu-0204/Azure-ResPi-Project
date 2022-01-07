@@ -51,7 +51,7 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
-with open(abs_file_path) as image_contents:
+with open(abs_file_path, "rb") as image_contents:
     results = predictor.classify_image(iteration_id, publish_iteration_name, image_contents.read())
 
     # Display the results.
