@@ -27,7 +27,7 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 #---------------------------------------------
 #----------------azure blob storage-------------
-from azure.storage.blob import BlobClient
+#from azure.storage.blob import BlobClient
 
 # IMPORTANT: Replace connection string with your storage account connection string
 # Usually starts with DefaultEndpointsProtocol=https;...
