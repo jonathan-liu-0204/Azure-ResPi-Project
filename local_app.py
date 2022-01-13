@@ -28,7 +28,7 @@ script_dir = os.path.dirname(os.path.realpath(__file__))
 def counter(num_of_secs):
     while num_of_secs:
         time.sleep(1)
-        num_of_secs -= 1
+        num_of_secs = num_of_secs - 1
     print("The time of detection process has expired.")
     stop_token = 1
 
@@ -53,7 +53,7 @@ while (stop_token != 1):
         results = predictor.classify_image(project_id, iteration_name, image_contents)
 
         # Display the results.
-        for prediction in results.predictions:
+        for prediction in results.predictions, range(3):
             print("\t" + prediction.tag_name +": {0:.2f}%".format(prediction.probability * 100))
 
     print("Analyzing...")
