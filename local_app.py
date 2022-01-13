@@ -28,20 +28,34 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 # read the absolute path
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
-DATE = datetime.now().strftime("%Y-%m-%d_%H%M")
-os.system('fswebcam -r 1280x720 --no-banner ./captured/' + DATE + '.jpg')
+def counter(num_of_secs):
+    while num_of_secs:
+        time.sleep(1)
+        num_of_secs -= 1
+    print("The time of detection process has expired.")
+    stop_token = 1
 
-# create the real path
-rel_path = DATE + ".jpg"
 
-#  join the absolute path and created file name
-abs_file_path = os.path.join(script_dir + "/captured", rel_path)
+#ask the user for the total time to observe
+total_time = input("Hi there :) Please enter the total observation time (minutes): ")
+counter(total_time * 60)
+stop_token = 0
 
-with open(abs_file_path, "rb") as image_contents:
+while (stop_token != 1):
+    DATE = datetime.now().strftime("%Y-%m-%d_%H%M")
+    os.system('fswebcam -r 1280x720 --no-banner ./captured/' + DATE + '.jpg')
 
-    results = predictor.classify_image(project_id, iteration_name, image_contents)
+    # create the real path
+    rel_path = DATE + ".jpg"
 
-    # Display the results.
-    for prediction in results.predictions:
-        print("\t" + prediction.tag_name +": {0:.2f}%".format(prediction.probability * 100))
+    #  join the absolute path and created file name
+    abs_file_path = os.path.join(script_dir + "/captured", rel_path)
+
+    with open(abs_file_path, "rb") as image_contents:
+
+        results = predictor.classify_image(project_id, iteration_name, image_contents)
+
+        # Display the results.
+        for prediction in results.predictions:
+            print("\t" + prediction.tag_name +": {0:.2f}%".format(prediction.probability * 100))
     
