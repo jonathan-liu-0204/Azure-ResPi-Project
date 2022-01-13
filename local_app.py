@@ -55,4 +55,8 @@ while (stop_token != 1):
         # Display the results.
         for prediction in results.predictions:
             print("\t" + prediction.tag_name +": {0:.2f}%".format(prediction.probability * 100))
+
+    print("Analyzing...")
+    time.sleep(15)
+
     
