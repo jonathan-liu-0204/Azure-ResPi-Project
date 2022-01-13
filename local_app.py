@@ -1,8 +1,6 @@
 import os
 from datetime import datetime
-import sys
 import time
-import subprocess
 
 from numpy import asarray
 from PIL import Image
@@ -13,7 +11,6 @@ from azure.cognitiveservices.vision.customvision.training import CustomVisionTra
 from azure.cognitiveservices.vision.customvision.prediction import CustomVisionPredictionClient
 from azure.cognitiveservices.vision.customvision.training.models import ImageFileCreateBatch, ImageFileCreateEntry, Region
 from msrest.authentication import ApiKeyCredentials
-import os, time, uuid
 
 # Replace with valid values
 ENDPOINT = "https://driverstatusdetection-prediction.cognitiveservices.azure.com/"
