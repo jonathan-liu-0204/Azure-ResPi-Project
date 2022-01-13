@@ -25,28 +25,11 @@ project_id = ""
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
-#---------------------------------------------
-#----------------azure blob storage-------------
-
-#from azure.storage.blob import BlobClient
-
-# Retrieve the connection string from an environment variable. Note that a connection
-# string grants all permissions to the caller, making it less secure than obtaining a
-# BlobClient object using credentials.
-#conn_string = os.environ["DefaultEndpointsProtocol=https;AccountName=raspiazureproject;AccountKey=DPiBhdEhyfBdyEG32tt4PpL+r4N3oa3ZOIIYBwiXwnCh6NuLfeGTozrJ64BY0/1z0M09Mc7xnoEjFIZ8GGfF9A==;EndpointSuffix=core.windows.net"]
-
-#---------------------------------------------
-
-
 # read the absolute path
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
 DATE = datetime.now().strftime("%Y-%m-%d_%H%M")
 os.system('fswebcam -r 1280x720 --no-banner ./captured/' + DATE + '.jpg')
-
-# Create the client object for the resource identified by the connection string,
-# indicating also the blob container and the name of the specific blob we want.
-#blob_client = BlobClient.from_connection_string(conn_string,container_name="capturedimages", blob_name=DATE)
 
 # create the real path
 rel_path = DATE + ".jpg"
@@ -62,4 +45,3 @@ with open(abs_file_path, "rb") as image_contents:
     for prediction in results.predictions:
         print("\t" + prediction.tag_name +": {0:.2f}%".format(prediction.probability * 100))
     
-    blob_client.upload_blob(image_contents)
