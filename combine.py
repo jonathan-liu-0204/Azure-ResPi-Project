@@ -29,13 +29,7 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 # read the absolute path
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
-output = []
-
-def change():
-    working_message = Text(app2, text="Analyzing...", size = 20, font = "Noto Sans", color = "darkblue")
-    stop = PushButton(app2, image = "stop.png", command = pause)
-    app2.show()
-    return analyze()
+output = []    
 
 def check():
     print("yyoyo")
@@ -45,8 +39,18 @@ def check():
 def pause():
     return check()
 
+def change():
+    app.hide()
+    app2 = App(title="Analyzing...", height = 500, width = 500)
+    working_message = Text(app2, text="Analyzing...", size = 20, font = "Noto Sans", color = "darkblue")
+    stop = PushButton(app2, image = "stop.png", command = pause)
+
 def analyze():
 
+    app2 = App(title="Analyzing...", height = 500, width = 500)
+    working_message = Text(app2, text="Analyzing...", size = 20, font = "Noto Sans", color = "darkblue")
+    stop = PushButton(app2, image = "stop.png", command = pause)
+    
     while True:
 
         DATE = datetime.now().strftime("%Y-%m-%d_%H%M%S")
@@ -78,9 +82,11 @@ def analyze():
 
 app = App(title="Emotion Recognizer", height = 150, width = 500)
 welcome_message = Text(app, text="Welcome to Emotion Recognizer! :)", size = 20, font = "Noto Sans", color = "darkblue")
-run = PushButton(app, image = "start.jpg", command = change)
+run = PushButton(app, image = "start.jpg", command = analyze)
 
-app2 = App(title="Analyzing...", height = 500, width = 500)
-app2.hide()
+# app2 = App(title="Analyzing...", height = 500, width = 500)
+# working_message = Text(app2, text="Analyzing...", size = 20, font = "Noto Sans", color = "darkblue")
+# stop = PushButton(app2, image = "stop.png", command = pause)
+# app2.hide()
 
 app.display()
