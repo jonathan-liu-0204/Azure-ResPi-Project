@@ -15,11 +15,11 @@ from azure.cognitiveservices.vision.customvision.training.models import ImageFil
 from msrest.authentication import ApiKeyCredentials
 
 # Replace with valid values
-ENDPOINT = "https://driverstatusdetection-prediction.cognitiveservices.azure.com/"
-prediction_resource_id = "/subscriptions/979b4825-25a2-4a44-b45b-9ec15fb3d60c/resourceGroups/GPS-Intern-Jonathan-RaspixAzure-Project/providers/Microsoft.CognitiveServices/accounts/DriverStatusDetection-Prediction"
-iteration_name = "Iteration1"
-prediction_key = "ad86ccf83b41417a8aab841ee87b6654"
-project_id = "5dc3b0ae-b36d-4cc5-ac3c-b3e45b9f4dbe"
+ENDPOINT = "https://jonathanazureraspiproject-prediction.cognitiveservices.azure.com/"
+prediction_resource_id = "/subscriptions/979b4825-25a2-4a44-b45b-9ec15fb3d60c/resourceGroups/GPS-Intern-Jonathan-RaspixAzure-Project/providers/Microsoft.CognitiveServices/accounts/JonathanAzureRaspiProject-Prediction"
+iteration_name = "FacialExpression"
+prediction_key = "62375fe7e72e48aaaa9290a62c02f86f"
+project_id = "cf9c1adc-0a51-42b0-b7a1-ae75e01b698c"
 
 prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
 predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
